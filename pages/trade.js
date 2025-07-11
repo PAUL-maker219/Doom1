@@ -14,38 +14,34 @@ export default async function handler(req, res) {
   }
 
   try {
-    // Smart trade analysis placeholder
-    // Here you would implement your advanced decision making algorithms
-    // For demo, just a simple random trade execution simulation
-
-    // Example: simulate a smart decision to trade or skip
-    const shouldTrade = Math.random() > 0.3; // 70% chance to trade
+    const shouldTrade = Math.random() > 0.3;
 
     if (!shouldTrade) {
       return res.status(200).json({ message: 'Trade skipped based on strategy' });
     }
 
-    // Call Deriv API to execute trade (pseudo-code, replace with real API call)
-    // This is a placeholder and won't work without real API integration
+    // Uncomment and use real API call when ready
+    /*
+    const response = await fetch(`${DERIV_API_URL}/trade`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${process.env.DERIV_API_TOKEN || token}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ symbol, trade_type, amount }),
+    });
+    const tradeResult = await response.json();
+    */
 
-    // const response = await fetch(`${DERIV_API_URL}/trade`, {
-    //   method: 'POST',
-    //   headers: {
-    //     'Authorization': `Bearer ${token}`,
-    //     'Content-Type': 'application/json'
-    //   },
-    //   body: JSON.stringify({ symbol, trade_type, amount })
-    // });
-
-    // For now simulate success
+    // Placeholder response
     const tradeResult = {
       id: `trade_${Date.now()}`,
       symbol,
       trade_type,
       amount,
       status: 'success',
-      profit: Math.random() * 100 - 50,  // random profit/loss between -50 to +50
-      timestamp: Date.now()
+      profit: Math.random() * 100 - 50,
+      timestamp: Date.now(),
     };
 
     res.status(200).json(tradeResult);
